@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Where PH: Detailed Location Information in one click</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{url_for('static', filename='html5up-helios/assets/css/main.css')}}" />
+		<noscript><link rel="stylesheet" href="{{url_for('static', filename='html5up-helios/assets/css/noscript.css')}}" /></noscript>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+            
+			<!-- Banner -->
+            <section id="banner">
+                <header>
+                    {% block header_content %}{% endblock %}
+                </header>
+            </section>
+
+
+			<!-- Main -->
+				<div class="wrapper style2">
+
+					<article id="main" class="container special">
+
+                        {% block app_content %}{% endblock %}
+
+					</article>
+
+				</div>
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+
+								<!-- Contact -->
+									<section class="contact">
+										<header>
+											<h3>Have questions or feedback?</h3>
+										</header>
+										<p>Let us know!</p>
+										<ul class="icons">
+											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
+										</ul>
+									</section>
+
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; Where PH. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										</ul>
+									</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{{url_for('static', filename='html5up-helios/assets/js/jquery.min.js')}}" ></script>
+			<script src="{{url_for('static', filename='html5up-helios/assets/js/jquery.dropotron.min.js')}}" ></script>
+			<script src="{{url_for('static', filename='html5up-helios/assets/js/jquery.scrolly.min.js')}}" ></script>
+			<script src="{{url_for('static', filename='html5up-helios/assets/js/jquery.scrollex.min.js')}}" ></script>
+			<script src="{{url_for('static', filename='html5up-helios/assets/js/browser.min.js')}}" ></script>
+			<script src="{{ url_for('static', filename='html5up-helios/assets/js/breakpoints.min.js') }}" ></script>
+			<script src="{{ url_for('static', filename='html5up-helios/assets/js/util.js') }}" ></script>
+			<script src="{{ url_for('static', filename='html5up-helios/assets/js/main.js') }}" ></script>
+
+			
+
+	</body>
+</html>

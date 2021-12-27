@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block header_content %}
+
+<h2>Found!</h2> 
+
+{% endblock%}
+
+{% block app_content %}
+
+<p> Province: {{ result[0] }} </p>
+<p> City/Municipality: {{ result[1] }}</p>
+<p> Area:  {{ result[2] }}</p>
+<a class="btn btn-primary btn-xl js-scroll-trigger" href={{ url_for('main.index') }}>Home</a>
+
+{% endblock %}
