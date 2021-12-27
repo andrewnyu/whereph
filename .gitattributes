@@ -1,0 +1,2 @@
+#override templates/files in "static" dir
+app/static/** linguist-vendored
