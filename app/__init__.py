@@ -7,12 +7,20 @@ from flask_bootstrap import Bootstrap
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
+import pandas as pd
 
 db = SQLAlchemy()
 migrate = Migrate()
 bootstrap = Bootstrap()
 
+#load shape file
+SHAPES_PATH = '~/prog/where-ph/app/static/shapefile'
+PKL_SHAPE_FILE = os.path.join(SHAPES_PATH, 'ph-shape.pkl')
+SHAPE_FILE = pd.read_pickle(PKL_SHAPE_FILE)
+
 def create_app(config_class=Config):
+
+
     app = Flask(__name__)
     app.config.from_object(config_class)
 
