@@ -1,0 +1,3 @@
+NAME_1,NAME_2,NAME_3,id,latitude,longitude,index,geometry
+,,,a,12,121,11,POINT (121 12)
+,,,b,12,122,12,POINT (122 12)

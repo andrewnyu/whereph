@@ -12,3 +12,6 @@ class Config(object):
     MAIL_SERVER = ''
     MAIL_PASSWORD = ''
     ADMINS = ''
+
+    #Max file size for upload
+    MAX_CONTENT_LENGTH = 1024 * 1024 * 16

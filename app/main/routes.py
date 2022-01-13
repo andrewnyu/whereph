@@ -1,13 +1,16 @@
-from flask import render_template, flash, redirect, url_for, request, g, current_app
+from flask import render_template, flash, redirect, url_for, request, g, current_app, send_from_directory
+import app
 from app import db
 from app.main.forms import PointSjoinForm
 from app.main import bp
-from app.scripts.whereph import sjoin_point
+from app.scripts.whereph import simple_sjoin, sjoin_point
+from app.scripts.fileload import allowed_file
 from sqlalchemy import func
 import geopandas as gpd
 import pandas as pd
 import os
-from app import SHAPE_FILE
+from app import SHAPE_FILE, UPLOAD_FOLDER
+import sys
 
 @bp.route('/', methods={'GET','POST'})
 @bp.route('/index', methods={'GET','POST'})
@@ -31,3 +34,35 @@ def index():
             return render_template('main/success.html', result=result)
 
     return render_template('main/index.html', form=form)
+
+@bp.route('/api', methods=['GET', 'POST'])
+def upload_files():
+
+
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        print(uploaded_file.filename, file=sys.stderr)
+        if allowed_file(uploaded_file.filename):
+            
+            #Save uploaded file, read into Pandas DataFrame and check for errors
+            save_path = os.path.join(os.path.join(os.getcwd(), UPLOAD_FOLDER), uploaded_file.filename)
+            uploaded_file.save(save_path)
+            df = pd.read_csv(save_path)
+            assert ('latitude' in df.columns) and ('longitude' in df.columns)
+
+            #Spatial Join and export into file
+            df_joined = simple_sjoin(df, SHAPE_FILE)
+
+            #Limit to important output columns
+            output_columns = ['NAME_1', 'NAME_2', 'NAME_3']
+            output_columns.extend(list(df.columns))
+
+            df_joined = df_joined[output_columns]
+            output_path = os.path.join(os.path.join(os.getcwd(), UPLOAD_FOLDER), 'output')
+            df_joined.to_csv(os.path.join(output_path, 'joined.csv'), index=False)
+
+            #Send into browser for download
+            return send_from_directory(output_path, 'joined.csv')
+
+    
+    return render_template('main/api.html')

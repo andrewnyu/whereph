@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Blueprint
+from flask import Blueprint, url_for
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -18,11 +18,17 @@ SHAPES_PATH = '~/prog/where-ph/app/static/shapefile'
 PKL_SHAPE_FILE = os.path.join(SHAPES_PATH, 'ph-shape.pkl')
 SHAPE_FILE = pd.read_pickle(PKL_SHAPE_FILE)
 
+UPLOAD_FOLDER = 'app/static/uploads'
+
+
+
 def create_app(config_class=Config):
 
 
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
     #special workaround to allow emojis in connection
     app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
