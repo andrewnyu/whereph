@@ -3,11 +3,12 @@ import app
 from app import db
 from app.main.forms import PointSjoinForm
 from app.main import bp
-from app.scripts.geospatial import simple_sjoin, sjoin_df, sjoin_point
+from app.scripts.geospatial import sjoin_df, sjoin_point
 from app.scripts.fileload import allowed_file
 from sqlalchemy import func
 import geopandas as gpd
 import pandas as pd
+import numpy as np
 import os
 from app import SHAPE_FILE, UPLOAD_FOLDER
 import sys
@@ -25,7 +26,7 @@ def index():
         #print(df_joined, file=sys.stderr)
 
         #Area not found
-        if(len(df_joined)==0):
+        if df_joined == None:
             return render_template('main/not-found.html')
         else:
             #Return Areas (Barangay, City, Province)

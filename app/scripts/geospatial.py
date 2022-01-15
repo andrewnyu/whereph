@@ -15,6 +15,9 @@ def sjoin_point(lat, lon, shapes):
     lat, lon = float(lat), float(lon)
     df = pd.DataFrame(data = [[lat, lon]], columns=['latitude', 'longitude'])
     
-    df_joined = sjoin_df(df, shapes)
+    df_joined = sjoin_df(df, shapes, join_method='inner')
     
-    return df_joined
+    if len(df_joined)==0:
+        return None
+    else:
+        return df_joined
