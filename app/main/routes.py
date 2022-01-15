@@ -1,14 +1,10 @@
-from flask import render_template, flash, redirect, url_for, request, g, current_app, send_from_directory
-import app
+from flask import render_template, request, send_from_directory
 from app import db
 from app.main.forms import PointSjoinForm
 from app.main import bp
 from app.scripts.geospatial import sjoin_df, sjoin_point
 from app.scripts.fileload import allowed_file
-from sqlalchemy import func
-import geopandas as gpd
 import pandas as pd
-import numpy as np
 import os
 from app import SHAPE_FILE, UPLOAD_FOLDER
 import sys
