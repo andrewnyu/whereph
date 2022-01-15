@@ -4,3 +4,7 @@ venv/
 .ipynb_checkpoints/
 __pycache__/
 **/shapefile/*
+.env
+data/ 
+logs/
+
