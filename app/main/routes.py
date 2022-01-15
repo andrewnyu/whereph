@@ -3,7 +3,7 @@ import app
 from app import db
 from app.main.forms import PointSjoinForm
 from app.main import bp
-from app.scripts.whereph import simple_sjoin, sjoin_point
+from app.scripts.geospatial import simple_sjoin, sjoin_df, sjoin_point
 from app.scripts.fileload import allowed_file
 from sqlalchemy import func
 import geopandas as gpd
@@ -51,7 +51,7 @@ def upload_files():
             assert ('latitude' in df.columns) and ('longitude' in df.columns)
 
             #Spatial Join and export into file
-            df_joined = simple_sjoin(df, SHAPE_FILE)
+            df_joined = sjoin_df(df, SHAPE_FILE)
 
             #Limit to important output columns
             output_columns = ['NAME_1', 'NAME_2', 'NAME_3']

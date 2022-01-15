@@ -5,7 +5,7 @@ from config import Config
 
 import numpy as np
 import pandas as pd
-from app.scripts.whereph import sjoin_point, simple_sjoin
+from app.scripts.geospatial import sjoin_point, sjoin_df
 import os
 
 class SpatialJoinCase(unittest.TestCase):
@@ -27,12 +27,11 @@ class SpatialJoinCase(unittest.TestCase):
                      [122.83989386089448, 121.03749818490371, 123.0374981840371]), 
              columns=['id', 'latitude', 'longitude'])
         
-        joined = simple_sjoin(sample_df, self.shapes)
+        joined = sjoin_df(sample_df, self.shapes)
         self.assertTrue(isinstance(joined, pd.DataFrame))
 
 
 if __name__ == '__main__':
-
     unittest.main()
 
 
