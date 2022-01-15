@@ -1,5 +1,4 @@
 from flask import render_template, request, send_from_directory
-from app import db
 from app.main.forms import PointSjoinForm
 from app.main import bp
 from app.scripts.geospatial import sjoin_df, sjoin_point

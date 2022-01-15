@@ -1,22 +1,18 @@
 from flask import Flask
 from flask import Blueprint, url_for
 from config import Config
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_bootstrap import Bootstrap
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import pandas as pd
-
-db = SQLAlchemy()
-migrate = Migrate()
-bootstrap = Bootstrap()
+import geopandas as gpd
 
 #load shape file
-SHAPES_PATH = '~/prog/where-ph/app/static/shapefile'
-PKL_SHAPE_FILE = os.path.join(SHAPES_PATH, 'ph-shape.pkl')
-SHAPE_FILE = pd.read_pickle(PKL_SHAPE_FILE)
+SHAPES_PATH = 'app/static/shapefile'
+#PKL_SHAPE_FILE = os.path.join(SHAPES_PATH, 'ph-shape.pkl')
+#SHAPE_FILE = pd.read_pickle(PKL_SHAPE_FILE)
+SHAPE_FILE = gpd.read_file(os.path.join(SHAPES_PATH, "gadm36_PHL_shp", "gadm36_PHL_3.shp"))
+
 
 UPLOAD_FOLDER = 'app/static/uploads'
 
@@ -32,10 +28,6 @@ def create_app(config_class=Config):
 
     #special workaround to allow emojis in connection
     app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
-
-    db.init_app(app)
-    migrate.init_app(app, db)
-    bootstrap.init_app(app)
 
     #import bluepriunts
     from app.main import bp as main_bp
