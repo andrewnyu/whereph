@@ -37,8 +37,7 @@ def index():
     return render_template('main/index.html', form=form)
 
 @bp.route('/api', methods=['GET', 'POST'])
-def upload_files():
-
+def api():
 
     if request.method == 'POST':
         uploaded_file = request.files['file']
