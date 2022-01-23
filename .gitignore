@@ -3,8 +3,10 @@ venv/
 .DS_Store/*
 .ipynb_checkpoints/
 __pycache__/
-**/shapefile/*
+
 .env
 data/ 
 logs/
 
+app/static/shapefile
+Experiment.ipynb
