@@ -17,7 +17,4 @@ def sjoin_point(lat, lon, shapes):
     
     df_joined = sjoin_df(df, shapes, join_method='inner')
     
-    if len(df_joined)==0:
-        return None
-    else:
-        return df_joined
+    return df_joined

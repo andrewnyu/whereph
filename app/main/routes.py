@@ -21,7 +21,7 @@ def index():
         #print(df_joined, file=sys.stderr)
 
         #Area not found
-        if df_joined == None:
+        if len(df_joined)==0:
             return render_template('main/not-found.html')
         else:
             #Return Areas (Barangay, City, Province)
