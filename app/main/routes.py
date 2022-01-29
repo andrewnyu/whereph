@@ -1,5 +1,4 @@
 from flask import redirect, render_template, request, send_from_directory, flash, url_for
-from nbformat import current_nbformat
 from app.main.forms import PointSjoinForm
 from app.main import bp
 from app.scripts.geospatial import sjoin_df, sjoin_point
