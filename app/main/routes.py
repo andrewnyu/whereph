@@ -7,6 +7,7 @@ import pandas as pd
 import os
 from app import SHAPE_FILE, UPLOAD_FOLDER
 import sys
+from flask_login import login_required
 
 @bp.route('/', methods={'GET','POST'})
 @bp.route('/index', methods={'GET','POST'})
@@ -32,8 +33,8 @@ def index():
     return render_template('main/index.html', form=form)
 
 @bp.route('/api', methods=['GET', 'POST'])
+@login_required
 def api():
-
     if request.method == 'POST':
         uploaded_file = request.files['file']
         print(uploaded_file.filename, file=sys.stderr)
