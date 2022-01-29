@@ -27,6 +27,8 @@ class Transaction(db.Model):
     cost = db.Column(db.Integer)
     download_link = db.Column(db.String(256))
 
+    uploaded = db.Column(db.DateTime)
+
 
 
 
@@ -52,6 +54,6 @@ def update_credits(user_id, credits):
 
 def add_transaction(user_id, cost, download_link):
     update_credits(user_id, -cost)
-    transaction = Transaction(user=user_id, cost=cost, download_link=download_link)
+    transaction = Transaction(uploaded = db.func.now(), user=user_id, cost=cost, download_link=download_link)
     db.session.add(transaction)
     db.session.commit()

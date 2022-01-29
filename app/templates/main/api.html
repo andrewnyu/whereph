@@ -33,11 +33,13 @@
   <table align-"center">
     <tbody>
     <tr>
+      <td align="center"><b>Uploaded</b></td>
       <td align="center"><b>Cost </b></td>
       <td align="center"><b>Download Link </b></td>
     </tr>
     {% for item in transactions %}
     <tr>
+        <td align="center">{{item.uploaded}}</td>
         <td align="center">{{item.cost}}</td>
 
         {% if 'download' in item.download_link %}
