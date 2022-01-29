@@ -3,12 +3,22 @@
 
 {% block header_content %}
 
-<h2>File Upload</h2> 
-<title>File Upload</title>
+<h2>File Upload API</h2> 
+<title>File Upload API</title>
 
 {% endblock%}
 
 {% block app_content %}
+
+
+  <!-- Banner -->
+  <section id="banner">
+    <header>
+      <p>
+        Welcome {{ current_user.username }}. You have {{ current_user.compute_credits }} compute credits left.
+      </p>
+    </header>
+  </section>
 
 <div class="wrapper style2" align="center">
   <form method="POST" action="" enctype="multipart/form-data">
@@ -16,7 +26,31 @@
     <p><input type="submit" value="Upload"></p>
   </form>
 
-  <a class="btn btn-primary btn-xl js-scroll-trigger" href={{ url_for('main.index') }}>Home</a>
+</div>
+
+
+<div class="wrapper style2" align="center"></div>
+  <table align-"center">
+    <tbody>
+    <tr>
+      <td align="center"><b>Cost </b></td>
+      <td align="center"><b>Download Link </b></td>
+    </tr>
+    {% for item in transactions %}
+    <tr>
+        <td align="center">{{item.cost}}</td>
+
+        {% if 'download' in item.download_link %}
+          <td align="center"><a href={{ item.download_link }}> Download Link </a></td>
+        {% else %}
+          <td align="center">{{item.download_link}}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+
 </div>
 
 {% endblock %}

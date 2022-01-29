@@ -22,21 +22,3 @@ def login():
         return redirect(url_for("main.api"))
     
     return render_template('auth/login.html', form=form)
-    
-
-def create_user(username, password, compute_credits):
-    user = User.query.filter_by(username=username)
-    if user is not None:
-        flash ("user already exists")
-    
-    else:
-        u = User(username=username, compute_credits=compute_credits)
-        u.set_password(password)
-        db.session.add(u)
-        db.session.commit()
-
-
-def add_credits(username, credits):
-    user = User.query.filter_by(username=username)
-    user.compute_credits += credits
-    db.session.commit()
