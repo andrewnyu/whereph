@@ -6,6 +6,8 @@ import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import pandas as pd
 import geopandas as gpd
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 #load shape file
 SHAPES_PATH = 'app/static/shapefile'
@@ -28,6 +30,10 @@ def create_app(config_class=Config):
 
     #special workaround to allow emojis in connection
     app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
+
+
+    db = SQLAlchemy(app)
+    migrate = Migrate(app, db)
 
     #import bluepriunts
     from app.main import bp as main_bp
@@ -68,4 +74,3 @@ def create_app(config_class=Config):
 
     return app
 
-#from app import models

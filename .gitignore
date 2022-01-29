@@ -10,3 +10,4 @@ logs/
 
 app/static/shapefile
 Experiment.ipynb
+*.db
