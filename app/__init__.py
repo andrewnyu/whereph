@@ -12,11 +12,9 @@ from flask_login import LoginManager
 
 #load shape file
 SHAPES_PATH = 'app/static/shapefile'
-#PKL_SHAPE_FILE = os.path.join(SHAPES_PATH, 'ph-shape.pkl')
-#SHAPE_FILE = pd.read_pickle(PKL_SHAPE_FILE)
 SHAPE_FILE = gpd.read_file(os.path.join(SHAPES_PATH, "gadm36_PHL_shp", "gadm36_PHL_3.shp"))
 
-
+#Upload folder
 UPLOAD_FOLDER = 'app/static/uploads'
 
 

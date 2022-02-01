@@ -7,14 +7,14 @@ import numpy as np
 import pandas as pd
 from app.scripts.geospatial import sjoin_point, sjoin_df
 import os
+import geopandas as gpd
 
 class SpatialJoinCase(unittest.TestCase):
 
     def setUp(self):
         #load shape file
-        SHAPES_PATH = '~/prog/where-ph/app/static/shapefile'
-        PKL_SHAPE_FILE = os.path.join(SHAPES_PATH, 'ph-shape.pkl')
-        SHAPE_FILE = pd.read_pickle(PKL_SHAPE_FILE)
+        SHAPES_PATH = 'app/static/shapefile'
+        SHAPE_FILE = gpd.read_file(os.path.join(SHAPES_PATH, "gadm36_PHL_shp", "gadm36_PHL_3.shp"))
         self.shapes = SHAPE_FILE
 
     def testSpatialJoinPoint(self):
