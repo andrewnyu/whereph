@@ -31,6 +31,18 @@ class SpatialJoinCase(unittest.TestCase):
         self.assertTrue(isinstance(joined, pd.DataFrame))
 
 
+    def testDuplicateColumns(self):
+        sample_df = pd.DataFrame(data = zip([1,2,3], [10.541173972241738, 14.54136684853697, 8.041173972241738], 
+                     [122.83989386089448, 121.03749818490371, 123.0374981840371]), 
+             columns=['id', 'latitude', 'longitude'])
+
+        sample_df['GID_1'] = "GID_0"
+        sample_df['NAME_1'] = "No Province"
+        
+        joined = sjoin_df(sample_df, self.shapes)
+        self.assertTrue(isinstance(joined, pd.DataFrame))    
+
+
 if __name__ == '__main__':
     unittest.main()
 

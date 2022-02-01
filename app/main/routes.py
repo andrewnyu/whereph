@@ -56,9 +56,6 @@ def api():
             else:
                 #Spatial Join and limit to important columns
                 df_joined = sjoin_df(df, SHAPE_FILE)
-                #Limit to important output columns
-                output_columns = ['GID_1', 'GID_2', 'GID_3', 'NAME_1', 'NAME_2', 'NAME_3']
-                output_columns.extend(list(df.columns))
                 df_joined = df_joined[output_columns]
 
                 #Build output folder
