@@ -2,7 +2,6 @@ from app.auth import bp
 from flask_login import current_user, login_user
 from app.models import User
 from flask import url_for, redirect, flash, render_template, request
-from werkzeug.urls import url_parse
 from app.auth.forms import LoginForm
 from app import db
 
